@@ -1,1 +1,1 @@
-{"domains": ["jghghghgjjg.lunarymc.xyz"]}
+{"domains": ["clients.prysmaxsoftware.cloud"]}
